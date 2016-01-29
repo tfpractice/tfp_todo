@@ -52,3 +52,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 
+gem 'devise'
+gem 'rails_admin'
+
+
