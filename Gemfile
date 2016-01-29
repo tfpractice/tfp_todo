@@ -54,5 +54,10 @@ end
 
 gem 'devise'
 gem 'rails_admin'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'bootstrap'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 
 
