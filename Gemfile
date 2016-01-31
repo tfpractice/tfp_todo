@@ -59,5 +59,7 @@ gem 'bootstrap'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+gem 'bootstrap-generators', '~> 3.3.4'
+
 
 
