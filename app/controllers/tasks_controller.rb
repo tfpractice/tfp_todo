@@ -3,12 +3,12 @@ class TasksController < ApplicationController
   load_and_authorize_resource :list
   load_and_authorize_resource :through => :list
 
-  # authorize_resource :through => :list
 
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = tasks.all
+    render "lists/show"
   end
 
   # GET /tasks/1
@@ -25,6 +25,10 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def complete
+    @task.update_attribute(:completed_on, Time.now)
+    redirect_to @list, notice: "Task Completed"
+  end
   # POST /tasks
   # POST /tasks.json
   def create
@@ -32,7 +36,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to [@list, @task], notice: 'Task was successfully created.' }
+        format.html { redirect_to @list, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -60,7 +64,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to list_tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to @list, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
