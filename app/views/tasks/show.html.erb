@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to list_tasks_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_list_task_path(@list, @task), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show task</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @task.title %></dd>
+
+  <dt>Content:</dt>
+  <dd><%= @task.content %></dd>
+
+  <dt>Due date:</dt>
+  <dd><%= @task.due_date %></dd>
+
+  <dt>Completed on:</dt>
+  <dd><%= @task.completed_on %></dd>
+
+  <dt>List:</dt>
+  <dd><%= @task.list %></dd>
+
+</dl>

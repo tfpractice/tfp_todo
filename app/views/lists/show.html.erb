@@ -21,3 +21,8 @@
   <dd><%= @list.username %></dd>
 
 </dl>
+
+ <%= link_to new_list_task_path(@list), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Task
+  <% end %>
