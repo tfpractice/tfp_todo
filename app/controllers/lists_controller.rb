@@ -1,9 +1,9 @@
 class ListsController < ApplicationController
   #before_action :authenticate_user!
-  load_and_authorize_resource :through => :current_user
+  before_action :set_list, only: [:show, :edit, :update, :destroy]
 
-  # load_and_authorize_resource :list, :through => :user
-   before_action :set_list, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :through => :current_or_guest_user, except: [:index]
+  
 
   # GET /lists
   # GET /lists.json
@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-     @list = lists.new
+    @list = lists.new
 
     # @list = List.new
   end
@@ -75,9 +75,17 @@ class ListsController < ApplicationController
 
   def lists
     # @user = current_user
-    @current_user ? current_user.lists : List
-    
+    @current_user ||= current_or_guest_user
+    # @current_user ? current_user.lists : List
+    current_user.lists
   end
+
+  # def create_guest_user
+  #   u = User.create(:username => "guest", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com")
+  #   u.save!(:validate => false)
+  #   session[:guest_user_id] = u.id
+  #   u
+  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def list_params
