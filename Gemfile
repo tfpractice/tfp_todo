@@ -50,6 +50,7 @@ gem 'rails_12factor', group: :production
 gem 'puma'
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'factory_girl_rails'
 end
 
 gem 'devise'
