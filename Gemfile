@@ -36,6 +36,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 
 end
 
@@ -50,7 +51,8 @@ gem 'rails_12factor', group: :production
 gem 'puma'
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'factory_girl_rails'
+  # gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 gem 'devise'
@@ -63,5 +65,3 @@ end
 gem 'bootstrap-generators', '~> 3.3.4'
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
 gem 'simple_form'
-
-
