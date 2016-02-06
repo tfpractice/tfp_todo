@@ -7,9 +7,5 @@ FactoryGirl.define do
     password {Faker::Internet.password}
   end
 
-  # factory :list do
-  #   title {Faker::Lorem.words(3)}
-  #   description {Faker::Lorem.words(3)}
-  #   user
-  # end
+  
 end
