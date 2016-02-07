@@ -26,7 +26,7 @@ RSpec.describe ListsController, type: :controller do
   # List. As you add validations to List, be sure to
   # adjust the attributes here as well.
   let(:lists) { List.all }
-  let(:list) { build(:list).save(:validate => false) }
+  let(:list) { build(:list) }
   let(:user) { create(:user) }
   # let(:current_user) {user }
   # let(:ability){ Ability.new(user) }
@@ -61,8 +61,7 @@ RSpec.describe ListsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested list as @list" do
-      # list = List.create! valid_attributes
-      # list = build(:list) attributes_for(:list)
+     
       list = create(:list)
       get :show, id: list
       # get :show, {:id => list.to_param}, valid_session

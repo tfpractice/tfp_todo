@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "lists/edit", type: :view do
+  let(:user) { create(:user) }
   before(:each) do
-    @list = assign(:list, List.create!(
+
+    @list = assign(:list, user.lists.create!(
       :title => "MyString",
       :description => "MyString",
-      :user => nil
+      :user => user
     ))
   end
 
