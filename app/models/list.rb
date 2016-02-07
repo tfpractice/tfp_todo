@@ -1,4 +1,5 @@
 class List < ActiveRecord::Base
+  validates_presence_of :title
   belongs_to :user
   delegate :username, to: :user
   has_many :tasks

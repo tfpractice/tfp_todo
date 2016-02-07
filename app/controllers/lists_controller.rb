@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   #before_action :authenticate_user!
+ 
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource :through => :current_or_guest_user, except: [:index]
