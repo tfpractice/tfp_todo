@@ -1,17 +1,18 @@
 require "rails_helper"
 
 RSpec.describe TasksController, type: :routing do
+  let(:list) { create(:list) }
   before(:each) do
     user = create(:user)
   end
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/tasks").to route_to("list/tasks")
+      expect(get: "tasks#index").not_to be_routable
     end
 
     it "routes to #new" do
-      expect(:get => "/tasks/new").to route_to("tasks#new")
+      expect(:get => "/tasks/new").not_to be_routable
     end
 
     it "routes to #show" do

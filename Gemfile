@@ -53,6 +53,9 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   # gem 'factory_girl_rails'
   gem 'faker'
+  gem "capybara"
+  gem "launchy"
+  gem "database_cleaner"
 end
 
 gem 'devise'

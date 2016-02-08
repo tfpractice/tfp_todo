@@ -6,5 +6,6 @@ FactoryGirl.define do
     title {Faker::Lorem.words(3)}
     content {Faker::Lorem.words(15)}
     due_date {Faker::Date.forward(14)}
+    completed_on {Faker::Date.forward(14)}
   end
 end

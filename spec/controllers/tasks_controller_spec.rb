@@ -31,7 +31,7 @@ RSpec.describe TasksController, type: :controller do
   # let(:tasks) { create_list(:task, 5) }
 
   let(:valid_attributes) {
-    attributes_for(:task, list_id: list)
+    attributes_for(:task)
   }
 
   let(:invalid_attributes) {
@@ -45,7 +45,7 @@ RSpec.describe TasksController, type: :controller do
 
   before(:each) do
     sign_in user
-    create_list(:list, 5, user: user)
+    # build_stubbed_list(:list, 5, user: user)
 
   end
 
@@ -102,7 +102,7 @@ RSpec.describe TasksController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved task as @task" do
-        post :create, :task => invalid_attributes, list_id: list
+        post :create, task: invalid_attributes, list_id: list
         expect(assigns(:task)).to be_a_new(Task)
       end
 
@@ -116,14 +116,14 @@ RSpec.describe TasksController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-       {title:"myNewTitle"}
+        {title:"myNewTitle"}
       }
 
       it "updates the requested task" do
         task = list.tasks.create! valid_attributes
         put :update, {:id => task.to_param, :task => new_attributes, list_id: list}
         task.reload
-        skip("Add assertions for updated state")
+        expect(task.title).to eq("myNewTitle")
       end
 
       it "assigns the requested task as @task" do

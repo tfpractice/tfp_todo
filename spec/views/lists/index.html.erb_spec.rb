@@ -1,17 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe "lists/index", type: :view do
+   let(:user) { create(:user) }
+  let(:list) { create(:list, user: user) }
+  let(:tasks) { list.tasks.all }
   before(:each) do
     assign(:lists, [
-      List.create!(
+      user.lists.create!(
         :title => "Title",
         :description => "Description",
-        :user => nil
+        # :user => nil
       ),
-      List.create!(
+      user.lists.create!(
         :title => "Title",
         :description => "Description",
-        :user => nil
+        # :user => nil
       )
     ])
   end

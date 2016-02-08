@@ -26,7 +26,7 @@ RSpec.describe ListsController, type: :controller do
   # List. As you add validations to List, be sure to
   # adjust the attributes here as well.
   let(:lists) { List.all }
-  let(:list) { build(:list) }
+  let(:list) { build_stubbed(:list) }
   let(:user) { create(:user) }
   # let(:current_user) {user }
   # let(:ability){ Ability.new(user) }
@@ -124,14 +124,14 @@ RSpec.describe ListsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {title: "myList", description: "myDesc"}
+        {title: "myNewList", description: "myDesc"}
       }
 
       it "updates the requested list" do
         list = user.lists.create valid_attributes
         put :update, {id: list, :list => new_attributes}
         list.reload
-        skip("Add assertions for updated state")
+        expect(list.title).to eq("myNewList")
       end
 
       it "assigns the requested list as @list" do
