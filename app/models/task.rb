@@ -3,6 +3,9 @@ class Task < ActiveRecord::Base
   validates_presence_of :title
   before_create :set_incomplete
 
+  scope :complete, lambda { where.not(completed_on: nil) }
+  scope :incomplete, lambda { where(completed_on: nil) }
+
 
 private
   def set_incomplete

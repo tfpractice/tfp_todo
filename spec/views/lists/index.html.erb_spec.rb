@@ -21,6 +21,7 @@ RSpec.describe "lists/index", type: :view do
 
   it "renders a list of lists" do
     render
+    
     assert_select "tr>td", :text => "Title".to_s, :count => 2
     assert_select "tr>td", :text => "Description".to_s, :count => 2
     assert_select "tr>td", :text => nil.to_s, :count => 2

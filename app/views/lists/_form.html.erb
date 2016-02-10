@@ -6,6 +6,11 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%#= f.association :user, default: @current_user %>
+     <%= f.simple_fields_for :tasks do |p| %>
+        <%= p.input :title  %>
+        <%= p.input :content %>
+    	<%= p.input :due_date %> 
+      <% end %>
   </div>
 
   <div class="form-actions">

@@ -1,34 +1,46 @@
 <div class="page-header">
   <%= link_to new_list_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New List
+  <span class="glyphicon glyphicon-plus"></span>
+  
+  <% if user_signed_in? %>
+  New List
+  <%else %>
+  New Guest List
+  <% end %>
   <% end %>
   <h1>Listing lists</h1>
-      
-
+  
 </div>
-
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>User</th>
-            <th></th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>User</th>
+              <% if can? :manage, @lists %>
+
         <th></th>
         <th></th>
+        <th></th>
+              <% end %>
+
       </tr>
     </thead>
-
     <tbody>
+      <% if @lists.count > 0 %>
       <%= content_tag_for(:tr, @lists) do |list| %>
-            <td><%= list.title %></td>
-            <td><%= list.description %></td>
-            <td><%= list.username %></td>
-            <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "#{list.title}", list %></td>
+      <td><%= list.description %></td>
+      <td><%= list.username %></td>
+      <% if can? :manage, list %>
+      
+      
+      <td><%= link_to 'Show', list %></td>
+      <td><%= link_to 'Edit', edit_list_path(list) %></td>
+      <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      <% end %>
       <% end %>
     </tbody>
   </table>

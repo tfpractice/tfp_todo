@@ -20,6 +20,7 @@ class ListsController < ApplicationController
   # GET /lists/new
   def new
     @list = lists.new
+    @task = @list.tasks.build
 
     # @list = List.new
   end
@@ -77,8 +78,9 @@ class ListsController < ApplicationController
   def lists
     # @user = current_user
     @current_user ||= current_or_guest_user
-    # @current_user ? current_user.lists : List
     current_user.lists
+    # @current_user ? current_user.lists : List
+
   end
 
   

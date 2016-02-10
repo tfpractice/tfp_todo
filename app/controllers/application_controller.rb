@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  # before_action :authenticate_user!
   helper_method :current_or_guest_user
   protect_from_forgery with: :exception
 
@@ -44,7 +45,7 @@ class ApplicationController < ActionController::Base
   # # end
 
   def create_guest_user
-    u = User.create(:username => "guest_#{Time.now.to_i}#{rand(100)}", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com", :admin => false)
+    u = User.create(:username => "guest_#{rand(1000)}", :email => "guest_#{rand(100)}@example.com", password: "Guest1234", :admin => false)
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     u

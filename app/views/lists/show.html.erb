@@ -29,6 +29,13 @@
 
 </dl>
 
-  <ul class="list-group"><%= render partial: "tasks/taskBox", collection: @list.tasks, as: :task %></ul>
+  <ul class="list-group bg-info">
+  <h3> Incomplete Tasks</h3>
+  <%= render partial: "tasks/taskBox", collection: @list.tasks.incomplete, as: :task %></ul>
+
+
+  <h3> Completed Tasks</h3>
+
+  <ul class="list-group"><%= render partial: "tasks/taskBox", collection: @list.tasks.complete, as: :task %></ul>
 
 
