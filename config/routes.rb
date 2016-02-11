@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  # resources :tasks
+  # get 'activities/index'
+
+  resources :activities
+  resources :tasks, only: :show
   resources :lists do
     resources :tasks do
         member do 

@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+  activity:
+    list:
+      create: 'created a list'
+      update: 'Someone has edited the article'
+      destroy: 'destroyed a list'
+    task:
+      create: 'created a task'
+      update: 'Someone has edited the article'
+      destroy: 'destroyed a task'    

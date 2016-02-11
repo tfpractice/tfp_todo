@@ -1,10 +1,10 @@
 class ListsController < ApplicationController
-  #before_action :authenticate_user!
- 
+  before_action :authenticate_user!
+
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource :through => :current_or_guest_user, except: [:index]
-  
+
 
   # GET /lists
   # GET /lists.json
@@ -36,6 +36,8 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
+        @list.create_activity :create, owner: current_user
+
         format.html { redirect_to @list, notice: 'List was successfully created.' }
         format.json { render :show, status: :created, location: @list }
       else
@@ -62,7 +64,10 @@ class ListsController < ApplicationController
   # DELETE /lists/1
   # DELETE /lists/1.json
   def destroy
+    @list.create_activity :destroy, owner: current_user
+
     @list.destroy
+
     respond_to do |format|
       format.html { redirect_to lists_url, notice: 'List was successfully destroyed.' }
       format.json { head :no_content }
@@ -83,7 +88,7 @@ class ListsController < ApplicationController
 
   end
 
-  
+
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def list_params

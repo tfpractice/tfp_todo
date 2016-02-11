@@ -3,9 +3,9 @@
 	<%= link_to "#{task.title}", [@list, task] %>
 	<span class= "pull-right ">
 		
-			<%= link_to complete_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
-			<span class="glyphicon glyphicon-ok"></span>
-			
+		<%= link_to complete_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-ok"></span>
+		
 		<% end %>
 		<%= link_to edit_list_task_path(@list, task), class: 'btn btn-primary pull-xs-right' do %>
 		<span class="glyphicon glyphicon-pencil"></span>

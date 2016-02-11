@@ -36,6 +36,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        @task.create_activity :create, owner: current_user
+
         format.html { redirect_to @list, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
@@ -62,7 +64,10 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @task.create_activity :destroy, owner: current_user
+
     @task.destroy
+
     respond_to do |format|
       format.html { redirect_to @list, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
@@ -73,6 +78,7 @@ class TasksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_task
     @task = Task.find(params[:id])
+    @list = @task.list
   end
   def tasks
     @list ? @list.tasks : Task
