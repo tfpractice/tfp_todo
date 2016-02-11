@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211010106) do
+ActiveRecord::Schema.define(version: 20160211193933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,11 @@ ActiveRecord::Schema.define(version: 20160211010106) do
     t.integer  "list_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "start_date"
   end
 
   add_index "tasks", ["list_id"], name: "index_tasks_on_list_id", using: :btree
+  add_index "tasks", ["start_date"], name: "index_tasks_on_start_date", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.boolean  "admin"

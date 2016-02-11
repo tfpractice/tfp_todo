@@ -2,8 +2,10 @@
 	<!-- <span class="label label-default label-pill pull-xs-right"></span> -->
 	<%= link_to "#{list.title}", list %>
 	<span class= "pull-right ">
+		<sub>
 		<%= list.username %>
 		<%= list.created_at.strftime('%m/%d/%Y') %>
+		</sub>
 		<% if can? :manage, list  %>
 		<%= link_to edit_list_path(list), class: 'btn btn-primary pull-xs-right' do %>
 		<span class="glyphicon glyphicon-pencil"></span>

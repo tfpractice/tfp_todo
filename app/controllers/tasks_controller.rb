@@ -26,8 +26,14 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task.update_attribute(:completed_on, Time.now)
+    # @task.update_attribute(:completed_on, Time.now)
+    @task.complete
     redirect_to @list, notice: "Task Completed"
+  end
+
+  def begin
+    @task.begin
+    redirect_to @list, notice: "Task Started at #{@task.start_date}"
   end
   # POST /tasks
   # POST /tasks.json
