@@ -1,0 +1,24 @@
+<li class="list-group-item clearfix">
+	<!-- <span class="label label-default label-pill pull-xs-right"></span> -->
+	<%= link_to "#{list.title}", list %>
+	<span class= "pull-right ">
+		<%= list.username %>
+		<%= list.created_at.strftime('%m/%d/%Y') %>
+		<% if can? :manage, list  %>
+		<%= link_to edit_list_path(list), class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-pencil"></span>
+		
+		<% end %>
+		<%= link_to list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary pull-xs-left' do %>
+		<span class="glyphicon glyphicon-remove-circle"></span>
+		
+		<% end %>
+		<% end %>
+		
+		
+	</span>
+	
+	
+	
+	
+</li>

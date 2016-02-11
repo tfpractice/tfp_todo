@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!, except: [:index]
 
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
@@ -9,7 +9,7 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    @lists = lists.all
   end
 
   # GET /lists/1
@@ -82,9 +82,9 @@ class ListsController < ApplicationController
 
   def lists
     # @user = current_user
-    @current_user ||= current_or_guest_user
-    current_user.lists
-    # @current_user ? current_user.lists : List
+    # @current_user ||= current_or_guest_user
+    # current_user.lists
+    current_user ? current_user.lists : List
 
   end
 
