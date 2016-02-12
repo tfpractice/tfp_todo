@@ -20,9 +20,9 @@
 	
 <% end %>
 
-<% elsif task.in_progress? %>
-<%= content_tag(:li, class: "list-group-item list-group-item-success clearfix") do -%>
-<%= link_to "#{task.title} (In Progress) ", [@list, task] %>
+<% elsif task.overdue? %>
+<%= content_tag(:li, class: "list-group-item list-group-item-danger clearfix") do -%>
+<%= link_to "#{task.title} (Overdue!) ", [@list, task] %>
 	<span class= "pull-right ">
 		
 		
@@ -41,9 +41,9 @@
 	</span>
 	
 <% end %>
-<% elsif task.overdue? %>
-<%= content_tag(:li, class: "list-group-item list-group-item-danger clearfix") do -%>
-<%= link_to "#{task.title} (Overdue) ", [@list, task] %>
+<% elsif task.in_progress? %>
+<%= content_tag(:li, class: "list-group-item list-group-item-sucess clearfix") do -%>
+<%= link_to "#{task.title} (In Progress) ",list_task_path(@list, task) %>
 	<span class= "pull-right ">
 		
 		<%= link_to begin_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
@@ -68,7 +68,7 @@
 
 <% elsif task.pending? %>
 <%= content_tag(:li, class: "list-group-item list-group-item-warning clearfix") do -%>
-	<%= link_to "#{task.title} (Pending) ", [@list, task] %>
+	<%= link_to "#{task.title} (Pending)", list_tasks_path[@list, task] %>
 	<span class= "pull-right ">
 		
 		<%= link_to begin_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>

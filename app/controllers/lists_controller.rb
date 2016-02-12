@@ -15,12 +15,13 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+    # @task = @list.tasks.build
   end
 
   # GET /lists/new
   def new
     @list = lists.new
-    @task = @list.tasks.build
+    # @task = @list.tasks.build
 
     # @list = List.new
   end
@@ -77,7 +78,7 @@ class ListsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_list
-    @list = List.find(params[:id])
+    @list = List.includes(:tasks).find(params[:id])
   end
 
   def lists

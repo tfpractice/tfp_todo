@@ -31,7 +31,13 @@
 
   <ul class="list-group bg-info">
  <h4>Tasks</h4>
-   <%= render partial: "tasks/taskBox", collection: @list.tasks, as: :task %></ul>
+   <%= render partial: "tasks/taskBox", collection: @list.tasks, as: :task %>
+   
+   </ul>
+<div class="col-md-6 pull-right">
+<% @task = @list.tasks.new %>
+     <%= render partial: "tasks/form"  %>
+   </div>
    
  
 

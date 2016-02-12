@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   # get 'activities/index'
 
   resources :activities
-  resources :tasks, only: :show
   resources :lists do
     resources :tasks do
         member do 
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
         end      
     end
   end
+    resources :tasks, only: :show
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

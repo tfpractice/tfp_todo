@@ -33,9 +33,16 @@ class Task < ActiveRecord::Base
   def completed?
     !completed_on.blank?
   end
+  def hasDate?
+    !due_date.blank?
+  end
   def pastdue?
-    due_date < DateTime.now
-    
+    if hasDate? 
+      return due_date < DateTime.now
+    else
+      return false
+    end
+
   end
   def pending?
     if (!started? && !completed? )
@@ -46,7 +53,7 @@ class Task < ActiveRecord::Base
     end
   end
    def overdue?
-     if (completed? == false && pastdue?)
+     if (!completed? && pastdue?)
        true
      else
        false
