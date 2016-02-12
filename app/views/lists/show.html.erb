@@ -30,21 +30,11 @@
 </dl>
 
   <ul class="list-group bg-info">
-  <h3>All Tasks</h3>
+ <h4>Tasks</h4>
    <%= render partial: "tasks/taskBox", collection: @list.tasks, as: :task %></ul>
-   <h3>In Progress Tasks</h3>
-   <%= render partial: "tasks/taskBox", collection: @list.tasks.in_progress, as: :task %></ul>
-
-<h3>Pending Tasks</h3>
-   <%= render partial: "tasks/taskBox", collection: @list.tasks.pending, as: :task %></ul>
-   <h3>Overdue Tasks</h3>
-   <%= render partial: "tasks/taskBox", collection: @list.tasks.overdue, as: :task %></ul>
+   
  
 
-
-  <h3> Completed Tasks</h3>
-
-  <ul class="list-group"><%= render partial: "tasks/taskBox", collection: @list.tasks.complete, as: :task %></ul>
 
 
 

@@ -1,5 +1,98 @@
-<li class="list-group-item clearfix">
-	<!-- <span class="label label-default label-pill pull-xs-right"></span> -->
+
+<% if task.completed? %>
+	<%= content_tag(:li, class: "list-group-item clearfix") do -%>
+	<%= link_to [@list, task] do %>
+	<del><%= task.title %></del>
+	<% end %>
+	<span class= "pull-right ">
+		
+	
+		
+		<%= link_to edit_list_task_path(@list, task), class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-pencil"></span>
+		
+		<% end %>
+		<%= link_to list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary pull-xs-left' do %>
+		<span class="glyphicon glyphicon-trash"></span>
+		
+		<% end %>
+	</span>
+	
+<% end %>
+
+<% elsif task.in_progress? %>
+<%= content_tag(:li, class: "list-group-item list-group-item-success clearfix") do -%>
+<%= link_to "#{task.title} (In Progress) ", [@list, task] %>
+	<span class= "pull-right ">
+		
+		
+		<%= link_to complete_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-ok"></span>
+		
+		<% end %>
+		<%= link_to edit_list_task_path(@list, task), class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-pencil"></span>
+		
+		<% end %>
+		<%= link_to list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary pull-xs-left' do %>
+		<span class="glyphicon glyphicon-remove-circle"></span>
+		
+		<% end %>
+	</span>
+	
+<% end %>
+<% elsif task.overdue? %>
+<%= content_tag(:li, class: "list-group-item list-group-item-danger clearfix") do -%>
+<%= link_to "#{task.title} (Overdue) ", [@list, task] %>
+	<span class= "pull-right ">
+		
+		<%= link_to begin_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-play"></span>
+		
+		<% end %>
+		<%= link_to complete_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-ok"></span>
+		
+		<% end %>
+		<%= link_to edit_list_task_path(@list, task), class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-pencil"></span>
+		
+		<% end %>
+		<%= link_to list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary pull-xs-left' do %>
+		<span class="glyphicon glyphicon-remove-circle"></span>
+		
+		<% end %>
+	</span>
+	
+<% end %>
+
+<% elsif task.pending? %>
+<%= content_tag(:li, class: "list-group-item list-group-item-warning clearfix") do -%>
+	<%= link_to "#{task.title} (Pending) ", [@list, task] %>
+	<span class= "pull-right ">
+		
+		<%= link_to begin_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-play"></span>
+		
+		<% end %>
+		<%= link_to complete_list_task_path(@list, task), method: :patch, class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-ok"></span>
+		
+		<% end %>
+		<%= link_to edit_list_task_path(@list, task), class: 'btn btn-primary pull-xs-right' do %>
+		<span class="glyphicon glyphicon-pencil"></span>
+		
+		<% end %>
+		<%= link_to list_task_path(@list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary pull-xs-left' do %>
+		<span class="glyphicon glyphicon-remove-circle"></span>
+		
+		<% end %>
+	</span>
+	
+<% end %>
+
+<% else %>
+<%= content_tag(:li, class: "list-group-item list-group-item-sucess clearfix") do -%>
 	<%= link_to "#{task.title}", [@list, task] %>
 	<span class= "pull-right ">
 		
@@ -21,7 +114,9 @@
 		<% end %>
 	</span>
 	
+<% end %>
+<% end %>
+
+<!-- <li class="list-group-item clearfix"> -->
+	<!-- <span class="label label-default label-pill pull-xs-right"></span> -->
 	
-	
-	
-</li>

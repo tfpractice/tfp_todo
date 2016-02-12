@@ -9,7 +9,6 @@ class Task < ActiveRecord::Base
 
   scope :complete, lambda { where.not(completed_on: nil) }
   scope :started, lambda { where.not(start_date: nil) }
-  # scope :incomplete, lambda { where("completed_on = ? AND start_date < ?", nil,  DateTime.now) }
   scope :notcomplete, lambda { where(completed_on: nil) }
   scope :pending, lambda {  where(start_date: nil, completed_on: nil)}
   scope :pastdue, lambda {  where("due_date < ?", DateTime.now) }
@@ -19,9 +18,47 @@ class Task < ActiveRecord::Base
   end
 
   def complete
-    # self.completed_on = DateTime.now
+    if !started?
+      self.begin
+    end
     self.update_attribute(:completed_on, DateTime.now)
 
+  end
+
+  def started?
+    !start_date.blank?
+  end
+
+
+  def completed?
+    !completed_on.blank?
+  end
+  def pastdue?
+    due_date < DateTime.now
+    
+  end
+  def pending?
+    if (!started? && !completed? )
+      return true
+      
+    else
+      return false
+    end
+  end
+   def overdue?
+     if (completed? == false && pastdue?)
+       true
+     else
+       false
+     end
+   end
+
+  def in_progress?
+    if  self.started?  && !self.completed?
+      return true
+    else
+      return false
+    end
   end
 
   def self.overdue
@@ -32,8 +69,9 @@ class Task < ActiveRecord::Base
     notcomplete.started
   end
 
+
   private
-  
+
   def set_incomplete
     self.completed_on = nil
   end
