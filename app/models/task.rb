@@ -1,8 +1,9 @@
 class Task < ActiveRecord::Base
   include PublicActivity::Common
   belongs_to :list
-  validates_presence_of :title
+  # validates_presence_of :title
   before_create :set_incomplete
+  before_create { |task| task.destroy if task.title.blank? }
 
 
 

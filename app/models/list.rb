@@ -4,6 +4,6 @@ class List < ActiveRecord::Base
   belongs_to :user
   delegate :username, to: :user
   has_many :tasks, dependent: :destroy
-  accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :tasks, allow_destroy: true, reject_if: :all_blank
 
 end

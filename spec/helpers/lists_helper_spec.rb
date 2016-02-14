@@ -11,5 +11,14 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ListsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+
+	let(:list) { create(:list) }
+
+	describe 'getNewListTask' do
+	  it 'returns a new task associated with the current list' do
+	  	expect(helper.getNewListTask(list)).to be_a_kind_of(Task)
+	  	
+	  end
+	end
 end
